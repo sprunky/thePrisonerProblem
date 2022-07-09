@@ -1,7 +1,7 @@
-package com.company.game;
+package com.sprunk.game;
 
-import com.company.GameResult;
-import com.company.Prisoner;
+import com.sprunk.GameResult;
+import com.sprunk.Prisoner;
 
 import java.util.ArrayList;
 import java.util.Collections;

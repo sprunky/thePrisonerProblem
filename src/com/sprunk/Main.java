@@ -1,6 +1,6 @@
-package com.company;
+package com.sprunk;
 
-import com.company.game.Game;
+import com.sprunk.game.Game;
 
 public class Main {
 

@@ -1,6 +1,6 @@
-package com.company;
+package com.sprunk;
 
-import com.company.game.AnsiCodes;
+import com.sprunk.game.AnsiCodes;
 
 import java.util.ArrayList;
 import java.util.List;
