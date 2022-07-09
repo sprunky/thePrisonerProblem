@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Prisoner {
-	private int inmateNumber;
+	private final int inmateNumber;
 	private List<Integer> sequence;
 	boolean survived;
 

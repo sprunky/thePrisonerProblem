@@ -61,6 +61,8 @@ public class Game {
 		for (int i = 0; i < 50; i++) {
 			prisoner.addToSequence(currentBox);
 			if (boxes.get(currentBox) == prisoner.getInmateNumber()) {
+				prisoner.addToSequence(boxes.get(currentBox));
+				prisoner.setSurvived();
 				return true;
 			} else {
 				currentBox = boxes.get(boxesLeft.get((int) (Math.random() * boxesLeft.size())));
