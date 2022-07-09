@@ -9,13 +9,13 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Game {
-	private final HashMap<Integer, Integer> boxes;
+	private final HashMap<Integer, Integer> drawers;
 	private final List<Prisoner> prisoners;
 	private GameResult result;
 	private boolean strategy;
 
 	public Game(boolean strategy) {
-		this.boxes = Utility.createBoxes();
+		this.drawers = Utility.createDrawers();
 		this.prisoners = Utility.createPrisoners();
 		this.result = new GameResult();
 		this.strategy = strategy;
@@ -24,13 +24,13 @@ public class Game {
 	public void run() {
 			for (int i = 0; i < prisoners.size(); i++) {
 				if(strategy) {
-					if (openBoxesWithStrategy(prisoners.get(i), boxes)) {
+					if (openDrawersWithStrategy(prisoners.get(i), drawers)) {
 						result.setCorrectGuesses(result.getCorrectGuesses() + 1);
 					} else {
 						result.setAllPrisonersFreed(false);
 					}
 				} else {
-					if (openBoxesWithoutStrategy(prisoners.get(i), boxes)) {
+					if (openDrawersWithoutStrategy(prisoners.get(i), drawers)) {
 						result.setCorrectGuesses(result.getCorrectGuesses() + 1);
 					} else {
 						result.setAllPrisonersFreed(false);
@@ -40,34 +40,34 @@ public class Game {
 			}
 	}
 
-	private boolean openBoxesWithStrategy(Prisoner prisoner, HashMap<Integer, Integer> boxes) {
+	private boolean openDrawersWithStrategy(Prisoner prisoner, HashMap<Integer, Integer> drawers) {
 		var currentBox = prisoner.getInmateNumber();
 		for (int i = 0; i < 50; i++) {
 			prisoner.addToSequence(currentBox);
-			if (boxes.get(currentBox) == prisoner.getInmateNumber()) {
-				prisoner.addToSequence(boxes.get(currentBox));
+			if (drawers.get(currentBox) == prisoner.getInmateNumber()) {
+				prisoner.addToSequence(drawers.get(currentBox));
 				prisoner.setSurvived();
 				return true;
 			} else {
-				currentBox = boxes.get(currentBox);
+				currentBox = drawers.get(currentBox);
 			}
 		}
 		return false;
 	}
 
-	private boolean openBoxesWithoutStrategy(Prisoner prisoner, HashMap<Integer, Integer> boxes) {
-		var currentBox = (int) (Math.random() * boxes.size()) + 1;
-		var boxesLeft = createListOfNumbers1to100();
+	private boolean openDrawersWithoutStrategy(Prisoner prisoner, HashMap<Integer, Integer> drawers) {
+		var currentBox = (int) (Math.random() * drawers.size()) + 1;
+		var drawersLeft = createListOfNumbers1to100();
 		for (int i = 0; i < 50; i++) {
 			prisoner.addToSequence(currentBox);
-			if (boxes.get(currentBox) == prisoner.getInmateNumber()) {
-				prisoner.addToSequence(boxes.get(currentBox));
+			if (drawers.get(currentBox) == prisoner.getInmateNumber()) {
+				prisoner.addToSequence(drawers.get(currentBox));
 				prisoner.setSurvived();
 				return true;
 			} else {
-				currentBox = boxes.get(boxesLeft.get((int) (Math.random() * boxesLeft.size())));
+				currentBox = drawers.get(drawersLeft.get((int) (Math.random() * drawersLeft.size())));
 			}
-			boxesLeft.remove(Integer.valueOf(currentBox));
+			drawersLeft.remove(Integer.valueOf(currentBox));
 		}
 		return false;
 	}
@@ -81,8 +81,8 @@ public class Game {
 		return numbers;
 	}
 
-	public HashMap<Integer, Integer> createBoxes() {
-		var boxes = new HashMap<Integer, Integer>();
+	public HashMap<Integer, Integer> createDrawers() {
+		var drawers = new HashMap<Integer, Integer>();
 		var inmateCards = new ArrayList<Integer>();
 
 		for (int i = 0; i < 100; i++) {
@@ -92,9 +92,9 @@ public class Game {
 		Collections.shuffle(inmateCards);
 
 		for (int i = 0; i < 100; i++) {
-			boxes.put(i + 1, inmateCards.get(i));
+			drawers.put(i + 1, inmateCards.get(i));
 		}
-		return boxes;
+		return drawers;
 	}
 
 	public List<Prisoner> createPrisoners() {
@@ -106,8 +106,8 @@ public class Game {
 		return prisoners;
 	}
 
-	public HashMap<Integer, Integer> getBoxes() {
-		return boxes;
+	public HashMap<Integer, Integer> getDrawers() {
+		return drawers;
 	}
 
 	public List<Prisoner> getPrisoners() {

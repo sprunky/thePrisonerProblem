@@ -8,8 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Utility {
-	public static HashMap<Integer, Integer> createBoxes() {
-		var boxes = new HashMap<Integer, Integer>();
+	public static HashMap<Integer, Integer> createDrawers() {
+		var drawers = new HashMap<Integer, Integer>();
 		var inmateCards = new ArrayList<Integer>();
 
 		for (int i = 0; i < 100; i++) {
@@ -19,9 +19,9 @@ public class Utility {
 		Collections.shuffle(inmateCards);
 
 		for (int i = 0; i < 100; i++) {
-			boxes.put(i + 1, inmateCards.get(i));
+			drawers.put(i + 1, inmateCards.get(i));
 		}
-		return boxes;
+		return drawers;
 	}
 
 	public static List<Prisoner> createPrisoners() {
