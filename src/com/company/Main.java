@@ -125,7 +125,6 @@ public class Main {
 		for (int i = 0; i < 100; i++) {
 			prisoners.add(new Prisoner(i + 1));
 		}
-
 		return prisoners;
 	}
 
