@@ -1,4 +1,4 @@
-package com.sprunk.game;
+package com.sprunk.utility;
 
 public class AnsiCodes {
 	public static final String ANSI_RESET = "\u001B[0m";

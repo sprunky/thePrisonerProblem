@@ -1,13 +1,13 @@
 package com.sprunk;
 
-import com.sprunk.game.Game;
+import com.sprunk.model.Game;
 
 public class Main {
 
 	public static void main(String[] args) {
 
-			var game = new Game(false);
-			game.run();
-			System.out.println(game.getGameResult());
+			var game = new Game(true);
+			var result = game.run();
+			System.out.println(result);
 	}
 }

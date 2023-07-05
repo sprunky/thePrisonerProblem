@@ -1,4 +1,4 @@
-package com.sprunk;
+package com.sprunk.model;
 
 import java.util.ArrayList;
 import java.util.List;

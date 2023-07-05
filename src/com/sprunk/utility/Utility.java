@@ -1,6 +1,6 @@
-package com.sprunk.game;
+package com.sprunk.utility;
 
-import com.sprunk.Prisoner;
+import com.sprunk.model.Prisoner;
 
 import java.util.ArrayList;
 import java.util.Collections;

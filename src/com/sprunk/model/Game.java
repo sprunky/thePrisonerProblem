@@ -1,27 +1,24 @@
-package com.sprunk.game;
+package com.sprunk.model;
 
-import com.sprunk.GameResult;
-import com.sprunk.Prisoner;
+import com.sprunk.utility.Utility;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
 public class Game {
 	private final HashMap<Integer, Integer> drawers;
 	private final List<Prisoner> prisoners;
-	private GameResult result;
 	private boolean strategy;
 
 	public Game(boolean strategy) {
 		this.drawers = Utility.createDrawers();
 		this.prisoners = Utility.createPrisoners();
-		this.result = new GameResult();
 		this.strategy = strategy;
 	}
 
-	public void run() {
+	public GameResult run() {
+		var result = new GameResult();
 			for (int i = 0; i < prisoners.size(); i++) {
 				if(strategy) {
 					if (openDrawersWithStrategy(prisoners.get(i), drawers)) {
@@ -38,6 +35,7 @@ public class Game {
 				}
 				result.addPrisoner(prisoners.get(i));
 			}
+			return result;
 	}
 
 	private boolean openDrawersWithStrategy(Prisoner prisoner, HashMap<Integer, Integer> drawers) {
@@ -79,46 +77,5 @@ public class Game {
 			numbers.add(i + 1);
 		}
 		return numbers;
-	}
-
-	public HashMap<Integer, Integer> createDrawers() {
-		var drawers = new HashMap<Integer, Integer>();
-		var inmateCards = new ArrayList<Integer>();
-
-		for (int i = 0; i < 100; i++) {
-			inmateCards.add(i + 1);
-		}
-
-		Collections.shuffle(inmateCards);
-
-		for (int i = 0; i < 100; i++) {
-			drawers.put(i + 1, inmateCards.get(i));
-		}
-		return drawers;
-	}
-
-	public List<Prisoner> createPrisoners() {
-		var prisoners = new ArrayList<Prisoner>();
-
-		for (int i = 0; i < 100; i++) {
-			prisoners.add(new Prisoner(i + 1));
-		}
-		return prisoners;
-	}
-
-	public HashMap<Integer, Integer> getDrawers() {
-		return drawers;
-	}
-
-	public List<Prisoner> getPrisoners() {
-		return prisoners;
-	}
-
-	public GameResult getGameResult() {
-		return result;
-	}
-
-	public boolean isStrategy() {
-		return strategy;
 	}
 }
